@@ -1,4 +1,5 @@
 import React from 'react';
+import { Chart } from 'react-google-charts';
 import { Progress, Text } from '@mantine/core';
 import heartIcon from '../../assets/heart.svg';
 import dumbbellIcon from '../../assets/dumbbell.svg';
@@ -7,6 +8,7 @@ import happyIcon from '../../assets/happy-face.svg';
 import breathIcon from '../../assets/breath.svg';
 import GoogleTranslate from '../../components/GoogleTranslate';
 import GoogleTimeZone from '../../components/GoogleTimeZone';
+import NearbyRecommendations from '../../components/NearbyRecommendations';
 
 const userData = {
   "user_id": "user123",
@@ -70,10 +72,26 @@ const Home = () => {
   const stamina = calculateStamina(userData.health_data.heart_rate.resting);
   const happiness = calculateHappiness(userData.health_data.streak.running_days);
 
+  const data = [
+    ['Parameter', 'Percentage'],
+    ['Health', health],
+    ['Strength', strength],
+    ['Dexterity', dexterity],
+    ['Stamina', stamina],
+    ['Happiness', happiness],
+  ];
+
+  const options = {
+    title: 'User Health Parameters',
+    pieHole: 0.4, // Optional: Creates a donut chart instead of a full pie chart
+    is3D: true,   // Optional: Creates a 3D pie chart
+  };
+
   return (
     <div className='h-screen w-full justify-center'>
       <GoogleTranslate />
       <GoogleTimeZone />
+      <NearbyRecommendations />
       <div className="max-w-xl md:m-auto mx-4 p-4 bg-white rounded-lg shadow-md">
         <div className="flex flex-col items-center space-y-4">
           {/* Health */}
@@ -122,6 +140,15 @@ const Home = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="max-w-xl md:m-auto mx-4 p-4 bg-white rounded-lg shadow-md mt-8">
+        <Chart
+          chartType="PieChart"
+          width="100%"
+          height="300px"
+          data={data}
+          options={options}
+        />
       </div>
     </div>
   );
