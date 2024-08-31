@@ -1,6 +1,7 @@
 import React from 'react';
 import { Progress, Text } from '@mantine/core';
 import "./Home.css";
+import PetHouse from '../PetHouse';
 
 const userData = {
   "user_id": "user123",
@@ -23,7 +24,7 @@ const userData = {
       "average": 75
     },
     "muscle_mass": {
-      "percentage": 40,
+      "percentage": 90,
       "trend": "increasing"
     },
     "streak": {
@@ -41,18 +42,29 @@ const Home = () => {
     return (sleepScore * 0.5) + (stressScore * 0.5);
   };
 
+  //40-60
+
   const calculateStrength = (muscleMassPercentage) => {
     return muscleMassPercentage;
   };
 
+  //jacked is 15% or less, fat is 30% or more
+
+
   const calculateDexterity = (steps, goal) => {
+    console.log("skeet")
     return (steps / goal) * 100;
   };
+
+  // > 100 = fit 
 
   const calculateStamina = (restingHeartRate) => {
     const maxHeartRate = 100; // You can adjust this value based on your requirements
     return 100 - ((restingHeartRate - 60) / (maxHeartRate - 60)) * 100;
   };
+
+
+
 
   const calculateHappiness = (streakDays) => {
     const maxStreak = 10; // You can adjust this value based on your requirements
@@ -65,7 +77,19 @@ const Home = () => {
   const stamina = calculateStamina(userData.health_data.heart_rate.resting);
   const happiness = calculateHappiness(userData.health_data.streak.running_days);
 
+  const petStat = {
+    "health": health,
+    "strength": strength,
+    "dexterity": dexterity,
+    "stamina": stamina,
+    "happiness": happiness
+  }
+
   return (
+    <>
+
+    <PetHouse petStat={petStat} />
+
     <div className="container">
       <div className="text-xl">home</div>
       <div className="home-wrapper">
@@ -91,6 +115,8 @@ const Home = () => {
         </div>
       </div>
     </div>
+
+    </>
   );
 }
 
