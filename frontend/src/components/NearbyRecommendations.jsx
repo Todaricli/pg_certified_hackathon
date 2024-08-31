@@ -24,7 +24,7 @@ const NearbyRecommendations = () => {
 
           const request = {
             location: location,
-            radius: '1500', // 1.5 km radius
+            radius: '2000',
             type: ['gym', 'park', 'restaurant'],
             keyword: ['healthy', 'fitness', 'exercise'],
           };
