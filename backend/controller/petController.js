@@ -1,6 +1,6 @@
 // Import required modules
-import { getAllPets, getPetById, getPetByName, createPet, getPetsByUserId } from './database.js'; // Adjust the import path as needed
-
+import petsDb from '../db/petsDb.js'; // Adjust the import path as needed
+const { getAllPets, getPetById, getPetByName, createPet, getPetsByUserId } = petsDb
 
 // Controller to get all pets
 const getAllPetsController = async (req, res) => {

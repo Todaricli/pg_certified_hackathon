@@ -1,12 +1,14 @@
 // Import required modules
 import express from 'express';
-import {
+import petControllers from '../../controller/petController.js'; // Adjust the import path as needed
+
+const {
   getAllPetsController,
   getPetByIdController,
   getPetByNameController,
   createPetController,
   getPetsByUserIdController
-} from './petControllers.js'; // Adjust the import path as needed
+} = petControllers
 
 const petRoute = express.Router();
 

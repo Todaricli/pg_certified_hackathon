@@ -6,6 +6,7 @@ import passport from 'passport';
 import helloRoutes from "./routes/hello.js";
 import auth from "./routes/auth/login.js";
 import userRoute from "./routes/user/userRoute.js";
+import petRoute from "./routes/pet/petRoute.js"
 config();
 
 const app = express();
@@ -21,6 +22,7 @@ app.use(passport.session());
 app.use("/hello", helloRoutes);
 app.use("/auth", auth)
 app.use('/user', userRoute)
+app.use('/pets', petRoute)
 
 const port = process.env.PORT || "3000"
 

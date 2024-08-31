@@ -1,5 +1,5 @@
 // Import Prisma Client
-import { prisma } from 'database.js';
+import prisma from './database.js';
 
 
 // Get all users

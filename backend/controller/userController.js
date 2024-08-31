@@ -1,8 +1,8 @@
 // Import required modules
-import express from 'express';
-import { getAllUsers, getUserById, getUserByEmail, updateUserById, getUserActivities } from './database.js'; // Adjust the import path as needed
+import userDb from '../db/userDb.js'; 
 
-const router = express.Router();
+const { getAllUsers, getUserById, getUserByEmail, updateUserById, getUserActivities } = userDb;
+
 
 // Route to get all users
 const getAllUsersController =  async (req, res) => {

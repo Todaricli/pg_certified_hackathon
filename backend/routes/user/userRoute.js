@@ -1,5 +1,7 @@
 import { Router } from 'express';
-import {getAllUsersController, getUserActivitiesController, getUserByEmailController, getUserByIdController, updateUserInfoController} from '../../controller/userController'
+import userController from '../../controller/userController.js'
+
+const {getAllUsersController, getUserActivitiesController, getUserByEmailController, getUserByIdController, updateUserInfoController} = userController
 
 const userRoute = Router();
 userRoute.route('/all').get(getAllUsersController);
