@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import GoogleLoginButton from '../components/GoogleLoginButton';
 
-const Login = () => {
+function Login() {
   return (
-    <div>Login</div>
-  )
+    <div className="App">
+      <h1>Login to Your App</h1>
+      <GoogleLoginButton />
+    </div>
+  );
 }
 
-export default Login
+export default Login;
