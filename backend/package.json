@@ -17,6 +17,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "nodemon": "^3.1.4",
     "express-session": "^1.18.0",
     "google-auth-library": "^9.14.0",
     "http": "^0.0.1-security",
