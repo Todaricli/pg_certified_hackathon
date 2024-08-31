@@ -1,5 +1,10 @@
 import React from 'react';
 import { Progress, Text } from '@mantine/core';
+import heartIcon from '../../assets/heart.svg';
+import dumbbellIcon from '../../assets/dumbbell.svg';
+import runIcon from '../../assets/run.svg';
+import happyIcon from '../../assets/happy-face.svg';
+import breathIcon from '../../assets/breath.svg';
 
 const userData = {
   "user_id": "user123",
@@ -33,7 +38,6 @@ const userData = {
 };
 
 const Home = () => {
-  // Calculate values for each stat
   const calculateHealth = (sleepHours, stressLevel) => {
     const sleepScore = (sleepHours / 8) * 100;
     const stressScore = 100 - stressLevel;
@@ -49,12 +53,12 @@ const Home = () => {
   };
 
   const calculateStamina = (restingHeartRate) => {
-    const maxHeartRate = 100; // You can adjust this value based on your requirements
+    const maxHeartRate = 100;
     return 100 - ((restingHeartRate - 60) / (maxHeartRate - 60)) * 100;
   };
 
   const calculateHappiness = (streakDays) => {
-    const maxStreak = 10; // You can adjust this value based on your requirements
+    const maxStreak = 10;
     return (streakDays / maxStreak) * 100;
   };
 
@@ -65,29 +69,53 @@ const Home = () => {
   const happiness = calculateHappiness(userData.health_data.streak.running_days);
 
   return (
-    <div className='h-screen w-screen'>
-      <div className="max-w-xl mx-4 p-4 bg-white rounded-lg shadow-md">
-        <div className="text-xl font-bold text-center mb-4">Home</div>
+    <div className='h-screen w-full justify-center'>
+      <div className="max-w-xl md:m-auto mx-4 p-4 bg-white rounded-lg shadow-md">
         <div className="flex flex-col items-center space-y-4">
-          <div className="w-full">
-            <Progress value={health} className="my-2" />
-            <Text size='xs' className="block text-center text-gray-600">Health</Text>
+          {/* Health */}
+          <div className='flex w-full justify-center items-center'>
+            <img src={heartIcon} alt='Heart Icon' className='bg-customYellow p-4 rounded-lg m-[1rem] w-[3.5rem]' />
+            <div className="w-full">
+              <Text size='sm' className="block font-bold text-gray-600">Health</Text>
+              <Progress value={health} className="my-2" />
+              <Text size='xs' color='dimmed'>{health.toFixed(1)}% - Based on sleep and stress levels</Text>
+            </div>
           </div>
-          <div className="w-full">
-            <Progress value={strength} className="my-2" />
-            <Text size='xs' className="block text-center text-gray-600">Strength</Text>
+          {/* Strength */}
+          <div className='flex w-full justify-center items-center'>
+            <img src={dumbbellIcon} alt='Strength Icon' className='bg-customYellow p-4 rounded-lg m-[1rem] w-[3.5rem]' />
+            <div className="w-full">
+              <Text size='sm' className="block font-bold text-gray-600">Strength</Text>
+              <Progress value={strength} className="my-2" />
+              <Text size='xs' color='dimmed'>{strength.toFixed(1)}% - Muscle mass percentage</Text>
+            </div>
           </div>
-          <div className="w-full">
-            <Progress value={dexterity} className="my-2" />
-            <Text size='xs' className="block text-center text-gray-600">Dexterity</Text>
+          {/* Dexterity */}
+          <div className='flex w-full justify-center items-center'>
+            <img src={runIcon} alt='Dexterity Icon' className='bg-customYellow p-4 rounded-lg m-[1rem] w-[3.5rem]' />
+            <div className="w-full">
+              <Text size='sm' className="block font-bold text-gray-600">Dexterity</Text>
+              <Progress value={dexterity} className="my-2" />
+              <Text size='xs' color='dimmed'>{dexterity.toFixed(1)}% - Steps count relative to goal</Text>
+            </div>
           </div>
-          <div className="w-full">
-            <Progress value={stamina} className="my-2" />
-            <Text size='xs' className="block text-center text-gray-600">Stamina</Text>
+          {/* Stamina */}
+          <div className='flex w-full justify-center items-center'>
+            <img src={breathIcon} alt='Stamina Icon' className='bg-customYellow p-4 rounded-lg m-[1rem] w-[3.5rem]' />
+            <div className="w-full">
+              <Text size='sm' className="block font-bold text-gray-600">Stamina</Text>
+              <Progress value={stamina} className="my-2" />
+              <Text size='xs' color='dimmed'>{stamina.toFixed(1)}% - Resting heart rate</Text>
+            </div>
           </div>
-          <div className="w-full">
-            <Progress value={happiness} className="my-2" />
-            <Text size='xs' className="block text-center text-gray-600">Happiness</Text>
+          {/* Happiness */}
+          <div className='flex w-full justify-center items-center'>
+            <img src={happyIcon} alt='Happiness Icon' className='bg-customYellow p-4 rounded-lg m-[1rem] w-[3.5rem]' />
+            <div className="w-full">
+              <Text size='sm' className="block font-bold text-gray-600">Happiness</Text>
+              <Progress value={happiness} className="my-2" />
+              <Text size='xs' color='dimmed'>{happiness.toFixed(1)}% - Based on activity streak</Text>
+            </div>
           </div>
         </div>
       </div>
