@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-const Home = () => {
+const RandomPage = () => {
   return (
-    <div>home</div>
-  )
-}
+    <div>
+      <h1>Welcome to the Random Page!</h1>
+      <p>This is a random page you see after authentication.</p>
+    </div>
+  );
+};
 
-export default Home
+export default RandomPage;
