@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const GoogleTranslate = () => {
   const [targetLang, setTargetLang] = useState('en');
-  const apiKey = import.meta.env.VITE_GOOGLE_TRANSLATE_API_KEY;
+  const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
   const translateText = async (text, targetLang) => {
     const url = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
