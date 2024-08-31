@@ -1,4 +1,0 @@
-*node_modules
-*.env
-*/dist
-backend/application_default_credentials.json

@@ -1,1 +1,0 @@
-# pg_certified_hackathon
