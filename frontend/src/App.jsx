@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import './global.css';
 import '@mantine/carousel/styles.css';
+import '@mantine/core/styles.css'
 
 import Home from './pages/home';
 import Login from './pages/Login';
