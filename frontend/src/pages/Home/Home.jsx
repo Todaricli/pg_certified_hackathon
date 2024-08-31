@@ -73,6 +73,8 @@ const Home = () => {
 
   return (
     <div className='h-screen w-screen'>
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: "10px"}}>
+              <Button className="shadow-md" onClick={open} variant="filled" color="#ffd53d" radius="lg">Play</Button></div>
       <div className="max-w-xl mx-4 p-4 bg-white rounded-lg shadow-md">
         <Modal 
         opened={opened} onClose={close} withCloseButton={false} size={"auto"} overlayProps={{backgroundOpactiy: 0.55, blur: 3,}} centered yOffset={0} xOffset={0}
@@ -115,7 +117,7 @@ const Home = () => {
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: "219px"}}>
         <Button onClick={close} variant="gradient" gradient={{from: "#0000a3", to: "#0000a3", deg: 90}} radius="lg" >Start</Button></div>
         </Modal>
-        <Button onClick={open}>Play</Button>
+
         <div className="text-xl font-bold text-center mb-4">Home</div>
         <div className="flex flex-col items-center space-y-4">
           <div className="w-full">
