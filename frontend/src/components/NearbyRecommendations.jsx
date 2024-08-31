@@ -17,23 +17,31 @@ const NearbyRecommendations = () => {
 
     if (navigator.geolocation) {
       setLoading(true);
+      console.log('Attempting to fetch current position...');
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
+          console.log('Current position:', { latitude, longitude });
           const location = new window.google.maps.LatLng(latitude, longitude);
 
           const request = {
             location: location,
-            radius: '2000',
+            radius: '1000',
             type: ['gym', 'park', 'restaurant'],
-            keyword: ['healthy', 'fitness', 'exercise'],
+            keyword: ['healthy', 'exercise', '']
           };
+
+          console.log('Places API request:', request);
 
           const service = new window.google.maps.places.PlacesService(document.createElement('div'));
           service.nearbySearch(request, (results, status) => {
             setLoading(false);
+            console.log('Places API response status:', status);
+            console.log('Places API response results:', results);
+
             if (status === window.google.maps.places.PlacesServiceStatus.OK) {
               setPlaces(results);
+              console.log('Fetched places:', results);
             } else {
               console.error('Places API request failed:', status);
             }
