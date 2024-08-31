@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Button, ButtonGroup, Container, Select, TextInput } from '@mantine/core'
-import styles from "../styles/Button.module.css"
 
 const LoginComponent = () => {
 
@@ -30,7 +29,7 @@ const LoginComponent = () => {
           label="Email" placeholder="example@gmail.com" />
 
         <TextInput
-            className={{imput: styles.input}}  onChange={(e) => {
+            onChange={(e) => {
             setPassword(e.target.value)
           }}
           label="Password" placeholder="**********" />
