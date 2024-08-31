@@ -59,4 +59,18 @@ async function createPet(name, hp, exp, level, strength, health) {
     }
 }
 
-export default {getAllPets, getPetById, getPetByName, createPet}
+async function getPetsByUserId(userId) {
+    try {
+        const pets = await prisma.pet.findMany({
+            where: {
+                userId: userId,
+            },
+        });
+        return pets;
+    } catch (error) {
+        console.error('Error fetching pets by user ID:', error);
+        throw new Error('Unable to fetch pets for the specified user. Please try again later.');
+    }
+}
+
+export default { getAllPets, getPetById, getPetByName, createPet, getPetsByUserId }
