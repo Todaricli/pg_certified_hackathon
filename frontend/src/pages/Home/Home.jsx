@@ -1,6 +1,5 @@
 import React from 'react';
 import { Progress, Text } from '@mantine/core';
-import "./Home.css";
 
 const userData = {
   "user_id": "user123",
@@ -66,28 +65,30 @@ const Home = () => {
   const happiness = calculateHappiness(userData.health_data.streak.running_days);
 
   return (
-    <div className="container">
-      <div className="text-xl">home</div>
-      <div className="home-wrapper">
-        <div className="stat-wrapper">
-          <Progress value={health} className="progress" />
-          <Text size='xs' className="text">Health</Text>
-        </div>
-        <div className="stat-wrapper">
-          <Progress value={strength} className="progress" />
-          <Text size='xs' className="text">Strength</Text>
-        </div>
-        <div className="stat-wrapper">
-          <Progress value={dexterity} className="progress" />
-          <Text size='xs' className="text">Dexterity</Text>
-        </div>
-        <div className="stat-wrapper">
-          <Progress value={stamina} className="progress" />
-          <Text size='xs' className="text">Stamina</Text>
-        </div>
-        <div className="stat-wrapper">
-          <Progress value={happiness} className="progress" />
-          <Text size='xs' className="text">Happiness</Text>
+    <div className='h-screen w-screen'>
+      <div className="max-w-xl mx-4 p-4 bg-white rounded-lg shadow-md">
+        <div className="text-xl font-bold text-center mb-4">Home</div>
+        <div className="flex flex-col items-center space-y-4">
+          <div className="w-full">
+            <Progress value={health} className="my-2" />
+            <Text size='xs' className="block text-center text-gray-600">Health</Text>
+          </div>
+          <div className="w-full">
+            <Progress value={strength} className="my-2" />
+            <Text size='xs' className="block text-center text-gray-600">Strength</Text>
+          </div>
+          <div className="w-full">
+            <Progress value={dexterity} className="my-2" />
+            <Text size='xs' className="block text-center text-gray-600">Dexterity</Text>
+          </div>
+          <div className="w-full">
+            <Progress value={stamina} className="my-2" />
+            <Text size='xs' className="block text-center text-gray-600">Stamina</Text>
+          </div>
+          <div className="w-full">
+            <Progress value={happiness} className="my-2" />
+            <Text size='xs' className="block text-center text-gray-600">Happiness</Text>
+          </div>
         </div>
       </div>
     </div>
