@@ -23,7 +23,6 @@ export default function App() {
           body: {
             backgroundColor: "#FBF7EF",
             color: "#000",
-            fontFamily: "Verdana, sans-serif", // Ensure global font is consistent
             margin: 0,
             padding: 0,
             boxSizing: "border-box",
