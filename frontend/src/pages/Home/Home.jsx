@@ -73,7 +73,7 @@ const Home = () => {
 
   return (
     <div className='h-screen w-screen'>
-              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: "10px"}}>
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: "10px", marginBottom: "10px"}}>
               <Button className="shadow-md" onClick={open} variant="filled" color="#ffd53d" radius="lg">Play</Button></div>
       <div className="max-w-xl mx-4 p-4 bg-white rounded-lg shadow-md">
         <Modal 
