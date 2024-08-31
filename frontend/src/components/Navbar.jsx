@@ -1,9 +1,11 @@
-import {Box, Avatar,Text, Flex} from "@mantine/core";
+import { Box, Avatar, Text, Flex } from "@mantine/core";
 
 const Navbar = () => {
-    <Flex>
-        <h1>Nav</h1>
+  return (
+    <Flex justify="flex-end" align="center" p={20}>
+      <Avatar src="avatar.png"/>
     </Flex>
-}
+  );
+};
 
 export default Navbar;

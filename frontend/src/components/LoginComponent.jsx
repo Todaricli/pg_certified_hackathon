@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, ButtonGroup, Container, Select, TextInput } from '@mantine/core'
+import { Button, ButtonGroup, Container, Flex, Select, TextInput } from '@mantine/core'
 
 const LoginComponent = () => {
 
@@ -19,8 +19,7 @@ const LoginComponent = () => {
   }, [email, password])
 
   return (
-    <>
-      <Container >
+    <Flex justify='center' align='center' direction='column'>
         <TextInput
           onChange={(e) => {
             setEmail(e.target.value)
@@ -32,17 +31,14 @@ const LoginComponent = () => {
             onChange={(e) => {
             setPassword(e.target.value)
           }}
+          mt={10}
           label="Password" placeholder="**********" />
-      </Container>
-
-      <Container>
-        <Button
-        onClick={submitForm}
+      <Button
+        onClick={submitForm} mt={20}
         >
           Sign In
         </Button>
-      </Container>
-    </>
+      </Flex>   
   )
 }
 
