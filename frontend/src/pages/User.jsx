@@ -12,7 +12,7 @@ import { IconScale } from "@tabler/icons-react";
 import { IconFlame } from "@tabler/icons-react";
 import { IconWalk } from "@tabler/icons-react";
 import { IconHeartbeat } from "@tabler/icons-react";
-import MiniCalendar from "../components/Calendar"
+// import MiniCalendar from "../components/Calendar"
 
 function getProgressColor(value, theme) {
   switch (true) {
@@ -74,7 +74,13 @@ function User() {
             <Title order={4}>Current</Title>
             <Text>{userData.weight} kg</Text>
           </Flex>
-          <IconScale stroke={2} style={{ width: "40px", height: "40px" }} />
+          <IconScale
+            stroke={2}
+            style={{
+              width: "40px",
+              height: "40px",
+            }}
+          />
           <Flex direction="column" justify="center">
             <Title order={4}>Target</Title>
             <Text>92 kg</Text>
@@ -209,7 +215,9 @@ function User() {
           w="100%"
           h="100%"
         >
-          <Text fw={700}>Sleep Last Night</Text>
+          <Text fw={700} mb={10}>
+            Sleep Last Night
+          </Text>
           <Progress value={sleep} color={sleepColor} size="sm" />
           <Flex justify="space-between" align="center" mt={5}>
             <Text size="xs">
@@ -224,18 +232,6 @@ function User() {
       </Flex>
 
       {/* Calendar */}
-      <Box
-        style={{
-          backgroundColor: theme.colors.customWhite[0],
-          borderRadius: "20px",
-        }}
-        shadow="lg"
-        mt={20}
-        p={15}
-      >
-        <Text fw={700}>Monthly Fitness Tracking</Text>
-        <MiniCalendar />
-      </Box>
     </Flex>
   );
 }
