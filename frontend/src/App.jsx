@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "@mantine/carousel/styles.css";
 import "@mantine/core/styles.css";
 import "./index.css";
-import { theme } from "./theme";
+import { theme } from "./theme.js"
 
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login";

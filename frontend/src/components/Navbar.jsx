@@ -1,9 +1,12 @@
 import { Box, Avatar, Text, Flex } from "@mantine/core";
+import { Link } from "react-router-dom"; 
 
 const Navbar = () => {
   return (
     <Flex justify="flex-end" align="center" p={10}>
-      <Avatar src="avatar.png"/>
+      <Link to="/user">
+        <Avatar src="avatar.png" style={{ cursor: "pointer" }} />
+      </Link>
     </Flex>
   );
 };

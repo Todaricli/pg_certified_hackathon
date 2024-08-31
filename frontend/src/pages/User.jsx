@@ -12,7 +12,7 @@ import { IconScale } from "@tabler/icons-react";
 import { IconFlame } from "@tabler/icons-react";
 import { IconWalk } from "@tabler/icons-react";
 import { IconHeartbeat } from "@tabler/icons-react";
-// import MiniCalendar from "../components/Calendar"
+import MiniCalendar from "../components/MiniCalendar";
 
 function getProgressColor(value, theme) {
   switch (true) {
@@ -36,7 +36,7 @@ function User() {
     steps: 3200,
     stepsGoal: 5000,
     heartRate: 88,
-    sleep: 2,
+    sleep: 6,
     sleepGoal: 8,
   });
   const theme = useMantineTheme();
@@ -87,6 +87,7 @@ function User() {
           </Flex>
         </Flex>
       </Box>
+
       {/* Calories burn */}
       <Box
         style={{
@@ -131,7 +132,8 @@ function User() {
           Oh no, Let's do some exercise to burn more calories today🤩
         </Text>
       </Box>
-      {/* Calories burn */}
+
+      {/* Step Counts */}
       <Box
         style={{
           backgroundColor: theme.colors.customWhite[0],
@@ -177,7 +179,7 @@ function User() {
       </Box>
 
       {/* Heart rate + Sleep hour */}
-      <Flex align="center" h={150}>
+      <Flex align="center" h={150} mt={13}>
         <Box
           style={{
             backgroundColor: theme.colors.customWhite[0],
@@ -232,6 +234,21 @@ function User() {
       </Flex>
 
       {/* Calendar */}
+      <Flex
+        style={{
+          backgroundColor: theme.colors.customWhite[0],
+          borderRadius: "20px",
+        }}
+        shadow="lg"
+        mt={30}
+        p={15}
+        direction="column"
+      >
+        <Text fw={700} mb={10}>Monthly Fitness Tracking</Text>
+        <Flex justify="center" align="center">
+          <MiniCalendar />
+        </Flex>
+      </Flex>
     </Flex>
   );
 }
