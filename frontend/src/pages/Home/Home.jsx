@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
+import { Chart } from 'react-google-charts';
 import { Progress, Text, Modal, Button, Select } from '@mantine/core';
+import heartIcon from '../../assets/heart.svg';
+import dumbbellIcon from '../../assets/dumbbell.svg';
+import runIcon from '../../assets/run.svg';
+import happyIcon from '../../assets/happy-face.svg';
+import breathIcon from '../../assets/breath.svg';
+import GoogleTranslate from '../../components/GoogleTranslate';
+import GoogleTimeZone from '../../components/GoogleTimeZone';
+import NearbyRecommendations from '../../components/NearbyRecommendations';
 import { useDisclosure } from '@mantine/hooks';
 import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';
 import { mantine_rem as rem } from 'foxact/rem';
@@ -40,7 +49,6 @@ const userData = {
 
 
 const Home = () => {
-  // Calculate values for each stat
   const calculateHealth = (sleepHours, stressLevel) => {
     const sleepScore = (sleepHours / 8) * 100;
     const stressScore = 100 - stressLevel;
@@ -64,12 +72,12 @@ const Home = () => {
   // > 100 = fit 
 
   const calculateStamina = (restingHeartRate) => {
-    const maxHeartRate = 100; // You can adjust this value based on your requirements
+    const maxHeartRate = 100;
     return 100 - ((restingHeartRate - 60) / (maxHeartRate - 60)) * 100;
   };
 
   const calculateHappiness = (streakDays) => {
-    const maxStreak = 10; // You can adjust this value based on your requirements
+    const maxStreak = 10;
     return (streakDays / maxStreak) * 100;
   };
 
@@ -92,58 +100,104 @@ const Home = () => {
   const [activityActive, setActivityActive] = useState();
   const [activityState, setActivityState] = useState(false)
 
-  return (
-    <>
+  const data = [
+    ['Parameter', 'Percentage'],
+    ['Health', health],
+    ['Strength', strength],
+    ['Dexterity', dexterity],
+    ['Stamina', stamina],
+    ['Happiness', happiness],
+  ];
 
-      <PetHouse petStat={petStat} activityActive = {activityActive} activityState = {activityState} setActivityState = {setActivityState} />
+  const options = {
+    title: 'User Health Parameters',
+    pieHole: 0.4, // Optional: Creates a donut chart instead of a full pie chart
+    is3D: true,   // Optional: Creates a 3D pie chart
+  };
+
+  return (
+    <div className='h-screen w-screen'>
+      <PetHouse petStat={petStat} activityActive={activityActive} activityState={activityState} setActivityState={setActivityState} />
 
       <div className='h-screen w-screen'>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: "10px", marginBottom: "10px" }}>
-        {activityState
-                ? 
-                <Button 
-                className='m-auto'   
-                onClick={() => {
-                    setActivityState(false)
-                    console.log("safs")
-                }}>
-                    Stop
-                </Button>
-                :
-                <Button className="shadow-md" onClick={open} variant="filled" color="#ffd53d" radius="lg">Play</Button>
-                }
+          {activityState
+            ?
+            <Button
+              className='m-auto'
+              onClick={() => {
+                setActivityState(false)
+                console.log("safs")
+              }}>
+              Stop
+            </Button>
+            :
+            <Button className="shadow-md" onClick={open} variant="filled" color="#ffd53d" radius="lg">Play</Button>
+          }
         </div>
-        <div className="max-w-xl mx-4 p-4 bg-white rounded-lg shadow-md">
+        <ActivityModal opened={opened} close={close} dropdownOpened={dropdownOpened} setDropdownOpened={setDropdownOpened} setActivityActive={setActivityActive} setActivityState={setActivityState} />
 
-          <ActivityModal opened={opened} close={close} dropdownOpened={dropdownOpened} setDropdownOpened={setDropdownOpened} setActivityActive={setActivityActive} setActivityState= {setActivityState}/>
-
-          <div className="text-xl font-bold text-center mb-4">Home</div>
-          <div className="flex flex-col items-center space-y-4">
+        <GoogleTranslate />
+        <GoogleTimeZone />
+        <NearbyRecommendations />
+        <div className="flex flex-col items-center space-y-4">
+          {/* Health */}
+          <div className='flex w-full justify-center items-center'>
+            <img src={heartIcon} alt='Heart Icon' className='bg-customYellow p-4 rounded-lg m-[1rem] w-[3.5rem]' />
             <div className="w-full">
+              <Text size='sm' className="block font-bold text-gray-600">Health</Text>
               <Progress value={health} className="my-2" />
-              <Text size='xs' className="block text-center text-gray-600">Health</Text>
+              <Text size='xs' color='dimmed'>{health.toFixed(1)}% - Based on sleep and stress levels</Text>
             </div>
+          </div>
+          {/* Strength */}
+          <div className='flex w-full justify-center items-center'>
+            <img src={dumbbellIcon} alt='Strength Icon' className='bg-customYellow p-4 rounded-lg m-[1rem] w-[3.5rem]' />
             <div className="w-full">
+              <Text size='sm' className="block font-bold text-gray-600">Strength</Text>
               <Progress value={strength} className="my-2" />
-              <Text size='xs' className="block text-center text-gray-600">Strength</Text>
+              <Text size='xs' color='dimmed'>{strength.toFixed(1)}% - Muscle mass percentage</Text>
             </div>
+          </div>
+          {/* Dexterity */}
+          <div className='flex w-full justify-center items-center'>
+            <img src={runIcon} alt='Dexterity Icon' className='bg-customYellow p-4 rounded-lg m-[1rem] w-[3.5rem]' />
             <div className="w-full">
+              <Text size='sm' className="block font-bold text-gray-600">Dexterity</Text>
               <Progress value={dexterity} className="my-2" />
-              <Text size='xs' className="block text-center text-gray-600">Dexterity</Text>
+              <Text size='xs' color='dimmed'>{dexterity.toFixed(1)}% - Steps count relative to goal</Text>
             </div>
+          </div>
+          {/* Stamina */}
+          <div className='flex w-full justify-center items-center'>
+            <img src={breathIcon} alt='Stamina Icon' className='bg-customYellow p-4 rounded-lg m-[1rem] w-[3.5rem]' />
             <div className="w-full">
+              <Text size='sm' className="block font-bold text-gray-600">Stamina</Text>
               <Progress value={stamina} className="my-2" />
-              <Text size='xs' className="block text-center text-gray-600">Stamina</Text>
+              <Text size='xs' color='dimmed'>{stamina.toFixed(1)}% - Resting heart rate</Text>
             </div>
+          </div>
+          {/* Happiness */}
+          <div className='flex w-full justify-center items-center'>
+            <img src={happyIcon} alt='Happiness Icon' className='bg-customYellow p-4 rounded-lg m-[1rem] w-[3.5rem]' />
             <div className="w-full">
+              <Text size='sm' className="block font-bold text-gray-600">Happiness</Text>
               <Progress value={happiness} className="my-2" />
-              <Text size='xs' className="block text-center text-gray-600">Happiness</Text>
+              <Text size='xs' color='dimmed'>{happiness.toFixed(1)}% - Based on activity streak</Text>
             </div>
           </div>
         </div>
       </div>
-
-    </>
+      <div className="max-w-xl md:m-auto mx-4 p-4 bg-white rounded-lg shadow-md mt-8">
+        <Chart
+          chartType="PieChart"
+          width="100%"
+          height="300px"
+          data={data}
+          options={options}
+        />
+      </div>
+    </div>
   );
 }
 

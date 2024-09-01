@@ -1,3 +1,5 @@
+import prisma from './database.js';
+
 async function getAllPets() {
     try {
         return await prisma.pet.findMany();
