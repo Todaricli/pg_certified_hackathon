@@ -11,7 +11,7 @@ import excitedPengu from "../../public/excitedPengu.gif"
 import layingDown from "../../public/layingdowndyingPengu.gif"
 import runningPengu from "../../public/runningPengu.gif"
 import walkingPengu from "../../public/walkingPengu.gif"
-import { Button } from '@mantine/core'
+import { Button, useMantineTheme } from '@mantine/core'
 
 
 
@@ -21,18 +21,19 @@ const PetHouse = ({ petStat, activityActive, setActivityState, activityState }) 
     const [displayedPic, setDisplayedPic] = useState(loadingSnail)
     const [workoutPic, setWorkoutPic] = useState(loadingSnail);
     const [workoutActive, setWorkoutActive] = useState(false)
+    const theme = useMantineTheme()
 
     useEffect(() => {
         if (petStat.heatlh < 60) {
-            setPetPicArray(prev => [...prev, stressedPengu])
+            setPetPicArray(prev => [...prev, { "pic": energeticPengu, "stat": "Health", "status": "High" }])
         } else if (petStat.health > 70) {
-            setPetPicArray(prev => [...prev, energeticPengu])
+            setPetPicArray(prev => [...prev, { "pic": stressedPengu, "stat": "Health", "status": "Low" }])
         }
 
         if (petStat.dexterity > 100) {
-            setPetPicArray(prev => [...prev, cryingPengu])
+            setPetPicArray(prev => [...prev, { "pic": cryingPengu, "stat": "Dexterity", "status": "High" }])
         } else if (petStat.dexterity < 100) {
-            setPetPicArray(prev => [...prev, layingDown])
+            setPetPicArray(prev => [...prev, { "pic": layingDown, "stat": "Dexterity ", "status": "Low" }])
         }
 
         if (petStat.strength > 60) {
@@ -42,15 +43,15 @@ const PetHouse = ({ petStat, activityActive, setActivityState, activityState }) 
         }
 
         if (petStat.stamina > 100) {
-            setPetPicArray(prev => [...prev, excitedPengu])
+            setPetPicArray(prev => [...prev, { "pic": excitedPengu, "stat": "Stamina", "status": "High" }])
         } else if (petStat.stamina < 100) {
-            setPetPicArray(prev => [...prev, tiredPengu])
+            setPetPicArray(prev => [...prev, { "pic": tiredPengu, "stat": "Stamina", "status": "Low" }])
         }
 
         if (petStat.happiness > 70) {
-            setPetPicArray(prev => [...prev, happyPengu])
+            setPetPicArray(prev => [...prev, { "pic": happyPengu, "stat": "Happiness", "status": "High :)" }])
         } else {
-            setPetPicArray(prev => [...prev, cryingPengu])
+            setPetPicArray(prev => [...prev, { "pic": cryingPengu, "stat": "Happiness", "status": "Sad :(" }])
         }
 
     }, [])
@@ -60,17 +61,17 @@ const PetHouse = ({ petStat, activityActive, setActivityState, activityState }) 
             setDisplayedPic(petPicArray[petPicIndex])
             setPetPicIndex(prev => (prev + 1) % petPicArray.length)
 
-        }, 500)
+        }, 5000)
 
         return () => clearInterval(intervalId);
     })
 
-    const getActivityPictures = () =>{
-        if(activityActive == "Walking"){
+    const getActivityPictures = () => {
+        if (activityActive == "Walking") {
             return walkingPengu;
-        } else if ( activityActive == "Running"){
+        } else if (activityActive == "Running") {
             return runningPengu
-        } else if( activityActive == "Weight Training"){
+        } else if (activityActive == "Weight Training") {
             return workoutPic
         } else {
             return displayedPic
@@ -79,8 +80,13 @@ const PetHouse = ({ petStat, activityActive, setActivityState, activityState }) 
 
     return (
         <div>
-            <img src={activityState ? getActivityPictures() : displayedPic}
+
+            <img src={activityState ? getActivityPictures() : displayedPic.pic}
                 className='w-[500px] h-[500px] flex justify-center' ></img>
+            <div className='border-2 mx-12 bg-sky-500' style={{backgroundColor: theme.colors.customNavy[0], color: "#ffffff", borderRadius: '10px'}} p={10}>
+                <h1 className='w-full text-center text-4xl'>{displayedPic.stat}</h1>
+                <h1 className='w-full text-center z-10 text-xl '>{displayedPic.status}</h1>
+            </div>
         </div>
     )
 }

@@ -13,9 +13,13 @@ const Navbar = () => {
     <Link to="/map">
         <FaRegMap style={{ cursor: "pointer", width: rem(21), height: rem(21)}} />
       </Link>
+      <Link to="/home">
+        <Text>Home</Text>
+      </Link>
       <Link to="/user">
         <Avatar src="avatar.png" style={{ cursor: "pointer" }} />
       </Link>
+      
     </Flex>
   );
 };

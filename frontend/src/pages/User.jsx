@@ -29,7 +29,7 @@ function getProgressColor(value, theme) {
 
 function User() {
   const [userData, setUserData] = useState({
-    name: "Grace",
+    name: "Tony Li",
     weight: 125,
     calories: 1000,
     caloriesGoal: 5000,
