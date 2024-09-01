@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import.meta.env.VITE_GOOGLE_API_KEY;
 
 const GoogleTranslate = () => {
   const [targetLang, setTargetLang] = useState('en');
@@ -69,7 +70,6 @@ const GoogleTranslate = () => {
 
   return (
     <div>
-      <h1>Choose Language</h1>
       <select onChange={(e) => setTargetLang(e.target.value)} value={targetLang}>
         <option value="en">English</option>
         <option value="es">Spanish</option>

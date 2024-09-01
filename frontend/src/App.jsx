@@ -26,6 +26,7 @@ export default function App() {
             margin: 0,
             padding: 0,
             boxSizing: "border-box",
+            fontFamily: 'Verdana, sans-serif, Cerebri Sans, Calibri',
           },
         }}
       />

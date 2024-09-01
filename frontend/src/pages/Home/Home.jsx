@@ -6,7 +6,6 @@ import dumbbellIcon from '../../assets/dumbbell.svg';
 import runIcon from '../../assets/run.svg';
 import happyIcon from '../../assets/happy-face.svg';
 import breathIcon from '../../assets/breath.svg';
-import GoogleTranslate from '../../components/GoogleTranslate';
 import GoogleTimeZone from '../../components/GoogleTimeZone';
 import NearbyRecommendations from '../../components/NearbyRecommendations';
 import { useDisclosure } from '@mantine/hooks';
@@ -77,6 +76,7 @@ const Home = () => {
   const stamina = calculateStamina(userData.health_data.heart_rate.resting);
   const happiness = calculateHappiness(userData.health_data.streak.running_days);
   const [opened, {open, close}] = useDisclosure(false);
+  const [chartOpened, { open: chartOpen, close: chartClose }] = useDisclosure(false);
   const [dropdownOpened, setDropdownOpened] = useState(false);
 
   const data = [
@@ -91,15 +91,14 @@ const Home = () => {
   const options = {
     title: 'User Health Parameters',
     pieHole: 0.4, // Optional: Creates a donut chart instead of a full pie chart
-    is3D: true,   // Optional: Creates a 3D pie chart
+    is3D: false,   // Optional: Creates a 3D pie chart
   };
 
   return (
     <div className='h-screen w-full justify-center'>
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: "10px", marginBottom: "10px"}}>
               <Button className="shadow-md" onClick={open} variant="filled" color="#ffd53d" radius="lg">Play</Button></div>
-      <GoogleTranslate />
-      <GoogleTimeZone />
+      {/* <GoogleTimeZone /> */}
       <NearbyRecommendations />
       <div className="max-w-xl md:m-auto mx-4 p-4 bg-white rounded-lg shadow-md">
         <Modal 
@@ -192,7 +191,23 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="max-w-xl md:m-auto mx-4 p-4 bg-white rounded-lg shadow-md mt-8">
+      <br></br>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: "10px", marginBottom: "10px"}}>
+              <Button className="shadow-md" onClick={chartOpen} variant="filled" color="#ffd53d" radius="lg">Health Overview</Button></div>
+      <Modal 
+        opened={chartOpened} onClose={chartClose} withCloseButton={true} size={"auto"} overlayProps={{backgroundOpactiy: 0.55, blur: 3,}} centered yOffset={0} xOffset={0}
+        styles={{
+          content: {
+            width: "100%",
+            height: "410px",
+            borderRadius: "20px",
+            backgroundColor: "#ffffff",
+            maxWidth: "28rem",
+            padding: "1rem",
+          },
+        }}
+        >
+      {/* <div className="max-w-xl md:m-auto mx-4 p-4 bg-white rounded-lg shadow-md"> */}
         <Chart
           chartType="PieChart"
           width="100%"
@@ -200,7 +215,8 @@ const Home = () => {
           data={data}
           options={options}
         />
-      </div>
+      {/* </div> */}
+      </Modal>
     </div>
   );
 }
