@@ -16,39 +16,115 @@ import { BsLightningCharge } from "react-icons/bs";
 import PetHouse from '../PetHouse';
 import ActivityModal from './ActivityModal';
 import AirQuality from '../../components/AirQuality';
+import { useUser } from '../../providers/UserProvider';
 
-const userData = {
-  "user_id": "user123",
-  "date": "2024-08-31",
-  "health_data": {
-    "sleep": {
-      "hours": 7.5,
-      "quality": "good"
-    },
-    "stress": {
-      "level": 20,
-      "description": "low"
-    },
-    "steps": {
-      "count": 8500,
-      "goal": 10000
-    },
-    "heart_rate": {
-      "resting": 65,
-      "average": 75
-    },
-    "muscle_mass": {
-      "percentage": 10,
-      "trend": "increasing"
-    },
-    "streak": {
-      "running_days": 5,
-      "activity": "running"
+const userData = [
+  {
+    "user_id": "user1",
+    "name": "Tony Li",
+    "date": "2024-08-31",
+    "health_data": {
+      "sleep": {
+        "hours": 7.5,
+        "quality": "good"
+      },
+      "stress": {
+        "level": 20,
+        "description": "low"
+      },
+      "steps": {
+        "count": 8500,
+        "goal": 10000
+      },
+      "heart_rate": {
+        "resting": 65,
+        "average": 75
+      },
+      "muscle_mass": {
+        "percentage": 10,
+        "trend": "increasing"
+      },
+      "streak": {
+        "running_days": 5,
+        "activity": "running"
+      }
+    }
+  },
+  {
+    "user_id": "user2",
+    "name": "Jane Smith",
+    "date": "2024-08-31",
+    "health_data": {
+      "sleep": {
+        "hours": 6.0,
+        "quality": "fair"
+      },
+      "stress": {
+        "level": 50,
+        "description": "moderate"
+      },
+      "steps": {
+        "count": 6000,
+        "goal": 10000
+      },
+      "heart_rate": {
+        "resting": 70,
+        "average": 80
+      },
+      "muscle_mass": {
+        "percentage": 12,
+        "trend": "stable"
+      },
+      "streak": {
+        "running_days": 3,
+        "activity": "walking"
+      }
+    }
+  },
+  {
+    "user_id": "user3",
+    "name": "Alice Johnson",
+    "date": "2024-08-31",
+    "health_data": {
+      "sleep": {
+        "hours": 8.0,
+        "quality": "excellent"
+      },
+      "stress": {
+        "level": 10,
+        "description": "very low"
+      },
+      "steps": {
+        "count": 10000,
+        "goal": 10000
+      },
+      "heart_rate": {
+        "resting": 60,
+        "average": 70
+      },
+      "muscle_mass": {
+        "percentage": 90,
+        "trend": "increasing"
+      },
+      "streak": {
+        "running_days": 7,
+        "activity": "cycling"
+      }
     }
   }
-};
+];
+
 
 const Home = () => {
+  const { currentUser } = useUser();
+
+  // Find the current user's data from the userData array
+  const currentUserData = userData.find(user => user.user_id === currentUser?.email) || userData[0];
+
+  if (!currentUserData) {
+    return <div>No user data available. Please log in.</div>;
+  }
+
   const calculateHealth = (sleepHours, stressLevel) => {
     const sleepScore = (sleepHours / 8) * 100;
     const stressScore = 100 - stressLevel;
@@ -73,18 +149,18 @@ const Home = () => {
     return (streakDays / maxStreak) * 100;
   };
 
-  const health = calculateHealth(userData.health_data.sleep.hours, userData.health_data.stress.level);
-  const strength = calculateStrength(userData.health_data.muscle_mass.percentage);
-  const dexterity = calculateDexterity(userData.health_data.steps.count, userData.health_data.steps.goal);
-  const stamina = calculateStamina(userData.health_data.heart_rate.resting);
-  const happiness = calculateHappiness(userData.health_data.streak.running_days);
+  const health = calculateHealth(currentUserData.health_data.sleep.hours, currentUserData.health_data.stress.level);
+  const strength = calculateStrength(currentUserData.health_data.muscle_mass.percentage);
+  const dexterity = calculateDexterity(currentUserData.health_data.steps.count, currentUserData.health_data.steps.goal);
+  const stamina = calculateStamina(currentUserData.health_data.heart_rate.resting);
+  const happiness = calculateHappiness(currentUserData.health_data.streak.running_days);
 
   const petStat = {
-    "health": health,
-    "strength": strength,
-    "dexterity": dexterity,
-    "stamina": stamina,
-    "happiness": happiness
+    health,
+    strength,
+    dexterity,
+    stamina,
+    happiness,
   };
 
   const [opened, { open, close }] = useDisclosure(false);
@@ -113,8 +189,16 @@ const Home = () => {
 
       <div className='h-screen w-screen'>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: "10px", marginBottom: "10px" }}>
-          {activityState ? (
-            <Button className='m-auto' onClick={() => setActivityState(false)}>
+          
+          {activityState
+            ?
+            (
+            <Button
+              className='m-auto'
+              onClick={() => {
+                setActivityState(false)
+                console.log("safs")
+              }}>
               Stop
             </Button>
           ) : (

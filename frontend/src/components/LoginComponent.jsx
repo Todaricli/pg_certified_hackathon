@@ -15,14 +15,36 @@ import {
   useMantineTheme,
 } from '@mantine/core';
 import { IconBrandGoogle, IconBrandFacebook } from '@tabler/icons-react'; // Import IconBrandGoogle for the Google button icon
+import React, { useState } from 'react';
+import { Button, Flex, TextInput } from '@mantine/core';
+import { useUser } from '../providers/UserProvider';
+import { useNavigate } from 'react-router-dom';
+
+// Hardcoded users for the login simulation
+const users = [
+  { email: 'user1', password: '123' },
+  { email: 'user2', password: '123' },
+  { email: 'user3', password: '123' }
+];
 
 const LoginComponent = () => {
-  const theme = useMantineTheme();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [formData, setFormData] = useState({});
-  const [error, setError] = useState('');
+  const theme = useMantineTheme();  const [email, setEmail] = useState('''');
+  const [password, setPassword] = useState('''');
+  const { setCurrentUser } = useUser(); // Access the context
+  const navigate = useNavigate({});
+  const [error, setError] = useState(''); // Initialize the useNavigate hook
 
+  const submitForm = () => {
+    const user = users.find(u => u.email === email && u.password === password);
+
+    if (user) {
+      setCurrentUser(user); // Set the current user in context
+      alert('Login successful');
+      navigate('/home'); // Redirect to /home
+    } else {
+      alert('Wrong credentials');
+    }
+  };
   const submitForm = () => {
     if (!email || !password) {
       setError('Please fill in all fields');
@@ -181,8 +203,32 @@ const LoginComponent = () => {
     </Container>
   );
 };
+    <Flex justify='center' align='center' direction='column'>
+      <TextInput
+        onChange={(e) => setEmail(e.target.value)}
+        name='email'
+        label="Email"
+        placeholder="example@gmail.com"
+        value={email}
+      />
 
-export default LoginComponent;
+      <TextInput
+        onChange={(e) => setPassword(e.target.value)}
+        mt={10}
+        label="Password"
+        placeholder="**********"
+        value={password}
+        type="password"
+      />
+
+      <Button onClick={submitForm} mt={20}>
+        Sign In
+      </Button>
+    </Flex>
+  );
+};
+
+export default LoginComponent;;
 
 
 
