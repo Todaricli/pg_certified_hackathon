@@ -7,7 +7,6 @@ import runIcon from '../../assets/run.svg';
 import happyIcon from '../../assets/happy-face.svg';
 import breathIcon from '../../assets/breath.svg';
 import GoogleTimeZone from '../../components/GoogleTimeZone';
-import NearbyRecommendations from '../../components/NearbyRecommendations';
 import { useDisclosure } from '@mantine/hooks';
 import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';
 import { mantine_rem as rem } from 'foxact/rem';
@@ -99,7 +98,6 @@ const Home = () => {
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: "10px", marginBottom: "10px"}}>
               <Button className="shadow-md" onClick={open} variant="filled" color="#ffd53d" radius="lg">Play</Button></div>
       {/* <GoogleTimeZone /> */}
-      <NearbyRecommendations />
       <div className="max-w-xl md:m-auto mx-4 p-4 bg-white rounded-lg shadow-md">
         <Modal 
         opened={opened} onClose={close} withCloseButton={false} size={"auto"} overlayProps={{backgroundOpactiy: 0.55, blur: 3,}} centered yOffset={0} xOffset={0}
@@ -191,7 +189,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <br></br>
+
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: "10px", marginBottom: "10px"}}>
               <Button className="shadow-md" onClick={chartOpen} variant="filled" color="#ffd53d" radius="lg">Health Overview</Button></div>
       <Modal 

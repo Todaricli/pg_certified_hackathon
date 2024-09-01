@@ -71,13 +71,13 @@ const GoogleTranslate = () => {
   return (
     <div>
       <select onChange={(e) => setTargetLang(e.target.value)} value={targetLang}>
-        <option value="en">English</option>
-        <option value="es">Spanish</option>
-        <option value="fr">French</option>
-        <option value="de">German</option>
-        <option value="zh">Chinese</option>
-        <option value="ja">Japanese</option>
-        <option value="ko">Korean</option>
+      <option value="en" style={{ fontSize: '0.5em' }}>English</option>
+      <option value="es" style={{ fontSize: '0.5em' }}>Spanish</option>
+      <option value="fr" style={{ fontSize: '0.5em' }}>French</option>
+      <option value="de" style={{ fontSize: '0.5em' }}>German</option>
+      <option value="zh" style={{ fontSize: '0.5em' }}>Chinese</option>
+      <option value="ja" style={{ fontSize: '0.5em' }}>Japanese</option>
+      <option value="ko" style={{ fontSize: '0.5em' }}>Korean</option>
       </select>
     </div>
   );
