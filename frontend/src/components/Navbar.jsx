@@ -5,8 +5,6 @@ import { FaRegMap } from "react-icons/fa6";
 import { mantine_rem as rem } from 'foxact/rem';
 
 
-
-
 const Navbar = () => {
   return (
     <Flex justify="space-between" align="center" p={10}>
