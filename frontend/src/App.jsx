@@ -14,6 +14,7 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
 import User from "./pages/User"
+import Map from "./pages/Map"
 
 export default function App() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/" element={<Login />} />
           <Route path="/user" element={<User />} />
+          <Route path="/map" element={<Map />} />
         </Routes>
       </Router>
       <ToastContainer
