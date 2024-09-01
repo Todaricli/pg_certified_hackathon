@@ -4,7 +4,9 @@ module.exports = {
   ],
   theme: {
     extend: {
-      // Extend Tailwind's default theme if needed
+      colors: {
+        customYellow: '#FFD53D',
+      },
     },
   },
   plugins: [],
