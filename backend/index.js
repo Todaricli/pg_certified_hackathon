@@ -6,6 +6,7 @@ import passport from 'passport';
 import helloRoutes from "./routes/hello.js";
 import auth from "./routes/auth/login.js";
 import userRoute from "./routes/user/userRoute.js";
+import petRoute from "./routes/pet/petRoute.js";
 
 config();
 
