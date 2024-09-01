@@ -6,7 +6,6 @@ import dumbbellIcon from '../../assets/dumbbell.svg';
 import runIcon from '../../assets/run.svg';
 import happyIcon from '../../assets/happy-face.svg';
 import breathIcon from '../../assets/breath.svg';
-import GoogleTimeZone from '../../components/GoogleTimeZone';
 import { useDisclosure } from '@mantine/hooks';
 import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';
 import { mantine_rem as rem } from 'foxact/rem';

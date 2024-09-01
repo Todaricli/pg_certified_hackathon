@@ -4,6 +4,7 @@ import GoogleTranslate from '../components/GoogleTranslate';
 import { FaRegMap } from "react-icons/fa6";
 import { mantine_rem as rem } from 'foxact/rem';
 
+// PR
 
 const Navbar = () => {
   return (
