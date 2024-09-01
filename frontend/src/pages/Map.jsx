@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
+import PetsMap from '../components/GoogleMap';
 
 const Map = () => {
   return (
-    <div>Map</div>
+    <div>
+      <PetsMap />
+    </div>
   )
 }
 

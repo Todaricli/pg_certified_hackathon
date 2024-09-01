@@ -9,7 +9,7 @@ import "@mantine/carousel/styles.css";
 import "@mantine/core/styles.css";
 import "./index.css";
 import { theme } from "./theme.js"
-
+import PetHouse from './pages/PetHouse';
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
