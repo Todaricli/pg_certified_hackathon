@@ -16,7 +16,7 @@ const petRoute = express.Router();
 petRoute.get('/pets', getAllPetsController);
 petRoute.get('/pets/:id', getPetByIdController);
 petRoute.get('/pet-user/:userId', getPetsByUserIdController);
-petRoute.post('/pets/name', getPetByNameController);
+petRoute.get('/pets-name', getPetByNameController);
 petRoute.post('/pets', createPetController);
 
 // Export the router

@@ -18,6 +18,7 @@
     "@mantine/hooks": "^7.12.2",
     "@mantine/notifications": "^7.12.2",
     "@tabler/icons-react": "^3.14.0",
+    "@vis.gl/react-google-maps": "^1.1.0",
     "dayjs": "^1.11.13",
     "foxact": "^0.2.37",
     "google-translate-api": "^2.3.0",
