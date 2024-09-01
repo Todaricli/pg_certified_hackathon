@@ -1,7 +1,11 @@
-import React from 'react';
-import { Progress, Text } from '@mantine/core';
-import "./Home.css";
+import React, { useState } from 'react';
+import { Progress, Text, Modal, Button, Select } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';
+import { mantine_rem as rem } from 'foxact/rem';
+import { BsLightningCharge } from "react-icons/bs";
 import PetHouse from '../PetHouse';
+import ActivityModal from './ActivityModal';
 
 const userData = {
   "user_id": "user123",
@@ -24,7 +28,7 @@ const userData = {
       "average": 75
     },
     "muscle_mass": {
-      "percentage": 90,
+      "percentage": 10,
       "trend": "increasing"
     },
     "streak": {
@@ -33,6 +37,7 @@ const userData = {
     }
   }
 };
+
 
 const Home = () => {
   // Calculate values for each stat
@@ -63,9 +68,6 @@ const Home = () => {
     return 100 - ((restingHeartRate - 60) / (maxHeartRate - 60)) * 100;
   };
 
-
-
-
   const calculateHappiness = (streakDays) => {
     const maxStreak = 10; // You can adjust this value based on your requirements
     return (streakDays / maxStreak) * 100;
@@ -84,37 +86,62 @@ const Home = () => {
     "stamina": stamina,
     "happiness": happiness
   }
+  const [opened, { open, close }] = useDisclosure(false);
+  const [dropdownOpened, setDropdownOpened] = useState(false);
+
+  const [activityActive, setActivityActive] = useState();
+  const [activityState, setActivityState] = useState(false)
 
   return (
     <>
 
-    <PetHouse petStat={petStat} />
+      <PetHouse petStat={petStat} activityActive = {activityActive} activityState = {activityState} setActivityState = {setActivityState} />
 
-    <div className="container">
-      <div className="text-xl">home</div>
-      <div className="home-wrapper">
-        <div className="stat-wrapper">
-          <Progress value={health} className="progress" />
-          <Text size='xs' className="text">Health</Text>
+      <div className='h-screen w-screen'>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: "10px", marginBottom: "10px" }}>
+        {activityState
+                ? 
+                <Button 
+                className='m-auto'   
+                onClick={() => {
+                    setActivityState(false)
+                    console.log("safs")
+                }}>
+                    Stop
+                </Button>
+                :
+                <Button className="shadow-md" onClick={open} variant="filled" color="#ffd53d" radius="lg">Play</Button>
+                }
         </div>
-        <div className="stat-wrapper">
-          <Progress value={strength} className="progress" />
-          <Text size='xs' className="text">Strength</Text>
-        </div>
-        <div className="stat-wrapper">
-          <Progress value={dexterity} className="progress" />
-          <Text size='xs' className="text">Dexterity</Text>
-        </div>
-        <div className="stat-wrapper">
-          <Progress value={stamina} className="progress" />
-          <Text size='xs' className="text">Stamina</Text>
-        </div>
-        <div className="stat-wrapper">
-          <Progress value={happiness} className="progress" />
-          <Text size='xs' className="text">Happiness</Text>
+        <div className="max-w-xl mx-4 p-4 bg-white rounded-lg shadow-md">
+
+          <ActivityModal opened={opened} close={close} dropdownOpened={dropdownOpened} setDropdownOpened={setDropdownOpened} setActivityActive={setActivityActive} setActivityState= {setActivityState}/>
+
+          <div className="text-xl font-bold text-center mb-4">Home</div>
+          <div className="flex flex-col items-center space-y-4">
+            <div className="w-full">
+              <Progress value={health} className="my-2" />
+              <Text size='xs' className="block text-center text-gray-600">Health</Text>
+            </div>
+            <div className="w-full">
+              <Progress value={strength} className="my-2" />
+              <Text size='xs' className="block text-center text-gray-600">Strength</Text>
+            </div>
+            <div className="w-full">
+              <Progress value={dexterity} className="my-2" />
+              <Text size='xs' className="block text-center text-gray-600">Dexterity</Text>
+            </div>
+            <div className="w-full">
+              <Progress value={stamina} className="my-2" />
+              <Text size='xs' className="block text-center text-gray-600">Stamina</Text>
+            </div>
+            <div className="w-full">
+              <Progress value={happiness} className="my-2" />
+              <Text size='xs' className="block text-center text-gray-600">Happiness</Text>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
     </>
   );

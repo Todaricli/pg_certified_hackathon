@@ -7,7 +7,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '@mantine/carousel/styles.css';
 import './index.css'
-
 import Home from './pages/Home/Home';
 import Login from './pages/Login';
 import PetHouse from './pages/PetHouse';
@@ -40,9 +39,8 @@ export default function App() {
       />
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/pet-house" element={<PetHouse />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Login />} />
         </Routes>
       </Router>
       <ToastContainer
@@ -58,4 +56,4 @@ export default function App() {
       />
     </MantineProvider>
   );
-}
+};

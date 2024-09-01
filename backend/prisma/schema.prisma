@@ -15,6 +15,12 @@ model User {
   password String
   username String       @unique
   workout  Activities[]
+  muscleMass BigInt?
+  muscleMassTrend String?
+  stress BigInt?
+  stressDesc String?
+  heartRateResting BigInt?
+  heartRateAverage BigInt?
 }
 
 model Pet {
@@ -28,17 +34,25 @@ model Pet {
 }
 
 model Activities {
-  id          Int           @id @default(autoincrement())
+  id          Int         @id @default(autoincrement())
   userId      Int
-  type        WorkoutType 
+  type        WorkoutType
   description String?
-  createdAt   DateTime      @default(now())
+  count       BigInt?
+  goal        BigInt?
+  resting     BigInt?
+  average     BigInt?
+  percentage  BigInt?
+  runningDays BigInt?
+  createdAt   DateTime    @default(now())
   finishedAt  DateTime
-  user        User          @relation(fields: [userId], references: [id])
+  user        User        @relation(fields: [userId], references: [id])
 }
 
 enum WorkoutType {
   running
   walking
   gyming
+  sleeping
+  steps
 }
