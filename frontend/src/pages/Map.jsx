@@ -1,12 +1,12 @@
 import React from 'react';
 import PetsMap from '../components/GoogleMap';
 
-function MapPage() {
+const Map = () => {
   return (
-    <div className="App">
+    <div>
       <PetsMap />
     </div>
-  );
+  )
 }
 
-export default MapPage;
+export default Map
