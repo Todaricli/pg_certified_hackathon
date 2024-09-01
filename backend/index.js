@@ -22,7 +22,7 @@ app.use(passport.session());
 app.use("/hello", helloRoutes);
 app.use("/auth", auth)
 app.use('/user', userRoute)
-app.use('/pets', petRoute)
+app.use('/pet', petRoute)
 
 const port = process.env.PORT || "3000"
 

@@ -9,18 +9,19 @@ datasource db {
 }
 
 model User {
-  id       Int          @id @default(autoincrement())
-  email    String       @unique
-  name     String?
-  password String
-  username String       @unique
-  workout  Activities[]
-  muscleMass BigInt?
-  muscleMassTrend String?
-  stress BigInt?
-  stressDesc String?
-  heartRateResting BigInt?
+  id               Int          @id @default(autoincrement())
+  email            String       @unique
+  name             String?
+  password         String
+  username         String       @unique
   heartRateAverage BigInt?
+  heartRateResting BigInt?
+  muscleMass       BigInt?
+  muscleMassTrend  String?
+  stress           BigInt?
+  stressDesc       String?
+  workout          Activities[]
+  Pet              Pet[]
 }
 
 model Pet {
@@ -31,6 +32,8 @@ model Pet {
   level    BigInt
   strength Float
   health   Float
+  userId   Int
+  User     User   @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model Activities {
@@ -38,14 +41,14 @@ model Activities {
   userId      Int
   type        WorkoutType
   description String?
-  count       BigInt?
-  goal        BigInt?
-  resting     BigInt?
-  average     BigInt?
-  percentage  BigInt?
-  runningDays BigInt?
   createdAt   DateTime    @default(now())
   finishedAt  DateTime
+  average     BigInt?
+  count       BigInt?
+  goal        BigInt?
+  percentage  BigInt?
+  resting     BigInt?
+  runningDays BigInt?
   user        User        @relation(fields: [userId], references: [id])
 }
 

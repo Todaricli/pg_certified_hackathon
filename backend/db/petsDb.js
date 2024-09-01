@@ -41,7 +41,7 @@ async function getPetByName(name) {
     }
 }
 
-async function createPet(name, hp, exp, level, strength, health) {
+async function createPet(name, hp, exp, level, strength, health, userId) {
     try {
         return await prisma.pet.create({
             data: {
@@ -50,7 +50,8 @@ async function createPet(name, hp, exp, level, strength, health) {
                 exp: exp,
                 level: level,
                 strength: strength,
-                health: health
+                health: health,
+                userId: userId
             }
         });
     } catch (error) {

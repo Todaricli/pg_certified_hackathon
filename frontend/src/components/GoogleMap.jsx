@@ -4,7 +4,7 @@ import { APIProvider, Map, Marker, InfoWindow, AdvancedMarker } from '@vis.gl/re
 // Correct the penguin icon path for production
 const penguinIcon = '/penguin.svg'; // Use public path for icons in React
 
-const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'AIzaSyDkcY3iZyujiVPxajVCBTUXHqdHlfKGdzc';
+const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '';
 
 const PetsMap = () => {
     const [selectedMarker, setSelectedMarker] = useState(null);
