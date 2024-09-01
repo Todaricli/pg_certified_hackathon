@@ -1,4 +1,5 @@
 import React from 'react';
+import { Progress, Text, Modal, Button, Select } from '@mantine/core';
 
 const GoogleLoginButton = () => {
   const handleLogin = () => {
@@ -7,9 +8,9 @@ const GoogleLoginButton = () => {
   };
 
   return (
-    <button onClick={handleLogin}>
-      Login with Google
-    </button>
+    <div onClick={handleLogin} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: "10px", marginBottom: "10px"}}>
+              <Button className="shadow-md" onClick={open} variant="filled" color="#ffd53d" radius="lg">Login with Google
+              </Button></div>
   );
 };
 

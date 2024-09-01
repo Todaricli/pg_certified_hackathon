@@ -6,9 +6,6 @@ import dumbbellIcon from '../../assets/dumbbell.svg';
 import runIcon from '../../assets/run.svg';
 import happyIcon from '../../assets/happy-face.svg';
 import breathIcon from '../../assets/breath.svg';
-import GoogleTranslate from '../../components/GoogleTranslate';
-import GoogleTimeZone from '../../components/GoogleTimeZone';
-import NearbyRecommendations from '../../components/NearbyRecommendations';
 import { useDisclosure } from '@mantine/hooks';
 import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';
 import { mantine_rem as rem } from 'foxact/rem';
@@ -216,10 +213,6 @@ const Home = () => {
           setActivityActive={setActivityActive}
           setActivityState={setActivityState}
         />
-
-        <GoogleTranslate />
-        <GoogleTimeZone />
-        <NearbyRecommendations />
 
         <div className='h-screen w-full justify-center'>
           <AirQuality />
