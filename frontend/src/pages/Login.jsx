@@ -7,9 +7,7 @@ function Login() {
   return (
     <>
       <LoginComponent />
-
       <div className="App">
-      <h1>Login to Your App</h1>
       <GoogleLoginButton />
     </div>
     </>
