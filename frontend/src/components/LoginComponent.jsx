@@ -13,10 +13,9 @@ import {
   Group,
   Image,
   useMantineTheme,
+  Flex,
 } from '@mantine/core';
-import { IconBrandGoogle, IconBrandFacebook } from '@tabler/icons-react'; // Import IconBrandGoogle for the Google button icon
-import React, { useState } from 'react';
-import { Button, Flex, TextInput } from '@mantine/core';
+import { IconBrandGoogle, IconBrandFacebook } from '@tabler/icons-react';
 import { useUser } from '../providers/UserProvider';
 import { useNavigate } from 'react-router-dom';
 
@@ -28,11 +27,12 @@ const users = [
 ];
 
 const LoginComponent = () => {
-  const theme = useMantineTheme();  const [email, setEmail] = useState('''');
-  const [password, setPassword] = useState('''');
+  const theme = useMantineTheme();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { setCurrentUser } = useUser(); // Access the context
-  const navigate = useNavigate({});
-  const [error, setError] = useState(''); // Initialize the useNavigate hook
+  const navigate = useNavigate(); // Initialize the useNavigate hook
+  const [error, setError] = useState('');
 
   const submitForm = () => {
     const user = users.find(u => u.email === email && u.password === password);
@@ -42,16 +42,8 @@ const LoginComponent = () => {
       alert('Login successful');
       navigate('/home'); // Redirect to /home
     } else {
-      alert('Wrong credentials');
+      setError('Wrong credentials');
     }
-  };
-  const submitForm = () => {
-    if (!email || !password) {
-      setError('Please fill in all fields');
-      return;
-    }
-    // Logic for form submission
-    console.log('Form submitted with:', formData);
   };
 
   const handleGoogleLogin = () => {
@@ -60,7 +52,7 @@ const LoginComponent = () => {
   };
 
   useEffect(() => {
-    setFormData({ email, password });
+    setError(''); // Reset error on input change
   }, [email, password]);
 
   return (
@@ -203,32 +195,9 @@ const LoginComponent = () => {
     </Container>
   );
 };
-    <Flex justify='center' align='center' direction='column'>
-      <TextInput
-        onChange={(e) => setEmail(e.target.value)}
-        name='email'
-        label="Email"
-        placeholder="example@gmail.com"
-        value={email}
-      />
 
-      <TextInput
-        onChange={(e) => setPassword(e.target.value)}
-        mt={10}
-        label="Password"
-        placeholder="**********"
-        value={password}
-        type="password"
-      />
+export default LoginComponent;
 
-      <Button onClick={submitForm} mt={20}>
-        Sign In
-      </Button>
-    </Flex>
-  );
-};
-
-export default LoginComponent;;
 
 
 
