@@ -113,8 +113,16 @@ const Home = () => {
 
       <div className='h-screen w-screen'>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: "10px", marginBottom: "10px" }}>
-          {activityState ? (
-            <Button className='m-auto' onClick={() => setActivityState(false)}>
+          
+          {activityState
+            ?
+            (
+            <Button
+              className='m-auto'
+              onClick={() => {
+                setActivityState(false)
+                console.log("safs")
+              }}>
               Stop
             </Button>
           ) : (
