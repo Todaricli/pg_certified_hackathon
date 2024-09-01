@@ -53,7 +53,7 @@ function User() {
   return (
     <Flex p={20} direction="column">
       <Flex justify="flex-start" align="flex-start" direction="column">
-        <Title style={{ color: theme.colors.customNavy[0] }}>
+        <Title style={{ color: theme.colors.customNavy[0], fontFamily: 'Calibri' }}>
           Hi, {userData.name}
         </Title>
         <Text style={{ color: theme.colors.customNavy[0] }}>

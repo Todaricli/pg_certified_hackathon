@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import useGoogleMaps from '../hooks/useGoogleMaps';
+import { Button } from '@mantine/core';
+import { FaRegSquare, FaRegCheckSquare } from "react-icons/fa";
+
 
 const NearbyRecommendations = () => {
   const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
@@ -8,6 +11,13 @@ const NearbyRecommendations = () => {
   const [places, setPlaces] = useState([]);
   const [checkedInPlaces, setCheckedInPlaces] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return `${text.substring(0, maxLength)}...`;
+    }
+    return text;
+  };
 
   const fetchNearbyPlaces = () => {
     if (!loaded) {
@@ -78,31 +88,28 @@ const NearbyRecommendations = () => {
 
   return (
     <div style={styles.container}>
-      <h2>Nearby Health Spots</h2>
-      <button
-        onClick={fetchNearbyPlaces}
-        style={styles.button}
-        disabled={loading || !loaded}
-      >
-        {loading ? 'Loading...' : 'Find Nearby Health Spots'}
-      </button>
-      {!loaded && <p>Loading Google Maps...</p>}
+      {/* <h2>Nearby Health Spots</h2> */}
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: "10px", marginBottom: "10px"}}>
+      <Button className="shadow-md" onClick={fetchNearbyPlaces} variant="filled" color="#0000a3" disabled={loading || !loaded} radius="lg">
+      {loading ? 'Loading...' : 'Find Nearby Health Spots'}</Button>
+      {!loaded && <p>Loading Google Maps...</p>}</div>
       <ul style={styles.list}>
         {places.map((place) => (
           <li key={place.place_id} style={styles.listItem}>
             <div>
-              <strong>{place.name}</strong> - {place.vicinity}
+              <strong>{truncateText(place.name, 30)}</strong> - {place.vicinity}
             </div>
             <button
               onClick={() => handleCheckIn(place)}
               style={{
                 ...styles.checkInButton,
-                backgroundColor: checkedInPlaces.includes(place.place_id) ? '#aaa' : '#34A853',
+                backgroundColor: checkedInPlaces.includes(place.place_id) ? '#0000a3' : '#aaa',
                 cursor: checkedInPlaces.includes(place.place_id) ? 'not-allowed' : 'pointer',
+                borderRadius: '20px',
               }}
               disabled={checkedInPlaces.includes(place.place_id)}
             >
-              {checkedInPlaces.includes(place.place_id) ? 'Checked-In' : 'Check-In'}
+              {checkedInPlaces.includes(place.place_id) ? <FaRegCheckSquare /> : <FaRegSquare />}
             </button>
           </li>
         ))}
