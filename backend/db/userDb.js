@@ -14,10 +14,10 @@ const getAllUsers = async () => {
 };
 
 // Get user by ID
-const getUserById = async (id) => {
+const getUserById = async (userId) => {
   try {
     const user = await prisma.user.findUnique({
-      where: { id },
+      where: { id: userId },
     });
     return user;
   } catch (error) {
@@ -27,10 +27,12 @@ const getUserById = async (id) => {
 };
 
 // Get user by email
-const getUserByEmail = async (email) => {
+const getUserByEmail = async (userEmail) => {
   try {
     const user = await prisma.user.findUnique({
-      where: { email },
+      where: {
+        email: userEmail
+      },
     });
     return user;
   } catch (error) {
@@ -40,10 +42,10 @@ const getUserByEmail = async (email) => {
 };
 
 // Update user by ID
-const updateUserById = async (id, data) => {
+const updateUserById = async (userId, data) => {
   try {
     const updatedUser = await prisma.user.update({
-      where: { id },
+      where: { id: userId },
       data,
     });
     return updatedUser;
@@ -54,17 +56,17 @@ const updateUserById = async (id, data) => {
 };
 
 const getUserActivities = async (userId) => {
-    try {
-      const activities = await prisma.activities.findMany({
-        where: {
-          userId: userId,
-        },
-      });
-      return activities;
-    } catch (error) {
-      console.error('Error fetching user activities:', error);
-      throw error;
-    }
-  };
+  try {
+    const activities = await prisma.activities.findMany({
+      where: {
+        userId: userId,
+      },
+    });
+    return activities;
+  } catch (error) {
+    console.error('Error fetching user activities:', error);
+    throw error;
+  }
+};
 
-  export default {getAllUsers, getUserActivities, updateUserById, getUserById, getUserByEmail}
+export default { getAllUsers, getUserActivities, updateUserById, getUserById, getUserByEmail }
