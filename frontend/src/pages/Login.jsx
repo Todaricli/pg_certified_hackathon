@@ -8,7 +8,7 @@ function Login() {
     <>
       <LoginComponent />
       <div className="App">
-      <GoogleLoginButton />
+      {/* <GoogleLoginButton /> */}
     </div>
     </>
   

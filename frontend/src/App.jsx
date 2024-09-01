@@ -40,6 +40,8 @@ export default function App() {
             <Route path="/" element={<Login />} />
             <Route path="/user" element={<User />} />
             <Route path="/map" element={<Map />} />
+            <Route path="/login" element={<Login />} />
+
           </Routes>
         </Router>
         <ToastContainer

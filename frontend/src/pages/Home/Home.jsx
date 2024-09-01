@@ -186,23 +186,23 @@ const Home = () => {
 
       <div className='h-screen w-screen'>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: "10px", marginBottom: "10px" }}>
-          
+
           {activityState
             ?
             (
-            <Button
-              className='m-auto'
-              onClick={() => {
-                setActivityState(false)
-                console.log("safs")
-              }}>
-              Stop
-            </Button>
-          ) : (
-            <Button className="shadow-md" onClick={open} variant="filled" color="#ffd53d" radius="lg">
-              Play
-            </Button>
-          )}
+              <Button
+                className='m-auto'
+                onClick={() => {
+                  setActivityState(false)
+                  console.log("safs")
+                }}>
+                Stop
+              </Button>
+            ) : (
+              <Button className="shadow-md" onClick={open} variant="filled" color="#ffd53d" radius="lg">
+                Play
+              </Button>
+            )}
         </div>
 
         <ActivityModal
@@ -215,7 +215,6 @@ const Home = () => {
         />
 
         <div className='h-screen w-full justify-center'>
-          <AirQuality />
           <div className="max-w-xl md:m-auto mx-4 p-4 bg-white rounded-lg shadow-md">
             <div className="flex flex-col items-center space-y-4">
               <div className='flex w-full justify-center items-center'>
@@ -273,6 +272,7 @@ const Home = () => {
                 options={options}
               />
             </div>
+            <AirQuality />
           </div>
         </div>
       </div>

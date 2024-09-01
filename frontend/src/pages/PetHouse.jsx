@@ -83,10 +83,11 @@ const PetHouse = ({ petStat, activityActive, setActivityState, activityState }) 
 
             <img src={activityState ? getActivityPictures() : displayedPic.pic}
                 className='w-[500px] h-[500px] flex justify-center' ></img>
-            <div className='border-2 mx-12 bg-sky-500' style={{backgroundColor: theme.colors.customNavy[0], color: "#ffffff", borderRadius: '10px'}} p={10}>
+                {!activityState &&<div className='border-2 mx-12 bg-sky-500' style={{backgroundColor: theme.colors.customNavy[0], color: "#ffffff", borderRadius: '10px'}} p={10}>
                 <h1 className='w-full text-center text-4xl'>{displayedPic.stat}</h1>
                 <h1 className='w-full text-center z-10 text-xl '>{displayedPic.status}</h1>
-            </div>
+            </div>}
+            
         </div>
     )
 }
